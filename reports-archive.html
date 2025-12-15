@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Archive of Afghanistan Field Intelligence Reports - Historical operational data and analysis.">
+    <title>Report Archive | Afghanistan Field Intelligence</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <span class="logo-icon">AF</span>
+                        <span class="logo-text">Afghanistan<span class="logo-highlight">Intel</span></span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="sample-report.html" class="nav-link">Sample Report</a>
+                    <a href="reports-archive.html" class="nav-link active">Archive</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="index.html#subscription" class="btn btn-primary">Subscribe</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="archive-page">
+        <div class="container">
+            <div class="archive-header">
+                <h1>Intelligence Report Archive</h1>
+                <p class="subtitle">Historical operational data for research and analysis</p>
+                <div class="archive-notice">
+                    <i class="fas fa-lock"></i>
+                    <p>Full reports available to subscribers only. Sample excerpts shown below.</p>
+                </div>
+            </div>
+
+            <div class="archive-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search reports by city, topic, or date..." id="reportSearch">
+                </div>
+                <div class="filter-options">
+                    <select id="monthFilter">
+                        <option value="">All Months</option>
+                        <option value="2024-10">October 2024</option>
+                        <option value="2024-09">September 2024</option>
+                        <option value="2024-08">August 2024</option>
+                    </select>
+                    <select id="cityFilter">
+                        <option value="">All Cities</option>
+                        <option value="kabul">Kabul</option>
+                        <option value="herat">Herat</option>
+                        <option value="kandahar">Kandahar</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="reports-grid" id="reportsContainer">
+                <!-- Reports will be loaded dynamically -->
+            </div>
+
+            <div class="pagination">
+                <button class="pagination-btn disabled">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <span class="page-info">Page 1 of 3</span>
+                <button class="pagination-btn">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="archive-cta">
+                <h2>Need Access to Full Historical Data?</h2>
+                <p>Subscribers get complete access to all historical reports for trend analysis and research.</p>
+                <a href="index.html#subscription" class="btn btn-primary">View Subscription Plans</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- Same footer as index.html -->
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/archive.js"></script>
+</body>
+</html>
