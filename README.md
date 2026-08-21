@@ -1,74 +1,73 @@
 # Afghanistan Field Intelligence (AfghanistanIntel)
 
-یک وب‌سایت استاتیک و مجموعه فایل‌های فرانت‌اند برای انتشار گزارش‌ها و داشبوردهای میدانی دربارهٔ وضعیت عملیاتی افغانستان. این پروژه برای انتشار نمونه‌گزارش‌ها، آرشیو گزارش‌ها، و فرم تماس B2B طراحی شده است — مشتریان هدف شامل سازمان‌های مردم‌نهاد، شرکت‌های لجستیک، مؤسسات پژوهشی و تیم‌های خبری است.
+A static front-end website and file collection for publishing field reports and dashboards about conditions in Afghanistan. The project is a static site (HTML/CSS/JS) intended to host report previews, an archive page, and contact/access information.
 
 ## Stack
-- **زبان‌ها:** HTML, CSS, JavaScript (ES modules)
-- **محیط اجرا:** سایت ایستا (قابل سرو با هر وب‌سرور ساده یا سرویس میزبانی ایستا)
-- **کتابخانه‌های برجسته:** فونت‌های Google Fonts، Font Awesome (آیکون‌ها)
+- Languages: HTML, CSS, JavaScript (ES modules)
+- Deployment: Static site (can be served by any simple web server or static hosting service)
+- Notable assets: Google Fonts, Font Awesome (icons)
 
-## ساختار (فایل‌ها و نقش آنها)
-```text
-README.md                (این فایل)
-index.html               صفحهٔ اصلی — محتوای معرفی و پیش‌نمایش داشبورد
-sample-report.html       پیش‌نمایش نمونهٔ گزارش PDF
-reports-archive.html     صفحهٔ آرشیو گزارش‌ها (با JS برای فیلتر/جستجو)
-contact.html             فرم تماس / درخواست دسترسی B2B
-main.js                  اسکریپت اصلی رابط کاربری (منو، فرم‌ها، انیمیشن‌ها)
-archive.js               منطق صفحهٔ آرشیو و مدیریت نمونهٔ گزارش‌ها
-style.css                سبک‌های اصلی صفحه
-dashboard.css            سبک‌های مخصوص پیش‌نمایش داشبورد
-robots.txt               رفتار ربات‌های موتور جست‌وجو
-sitemap.xml              مسیر صفحات (برای SEO)
-sample-report.pdf       (ارجاع ممکن — اگر موجود باشد) — نمونهٔ PDF گزارش
-README.md                (این فایل)
-```
+## Project structure (files and roles)
+README.md                (this file)
+index.html               Main landing page — introduction and dashboard preview
+sample-report.html       Sample PDF report preview
+reports-archive.html     Reports archive page (uses JavaScript for filtering/search)
+contact.html             Contact / B2B access request form
+main.js                  Main UI script (menu, forms, animations)
+archive.js               Archive page logic and sample report handling
+style.css                Primary stylesheet
+dashboard.css            Styles for dashboard preview
+robots.txt               Robots rules for search engines
+sitemap.xml              Sitemap for SEO
+sample-report.pdf        Optional sample PDF report (if included)
 
-نکته: بسیاری از فایل‌های HTML به مسیرهای `css/` و `js/` اشاره می‌کنند (مثلاً `css/style.css` یا `js/main.js`) ولی در حال حاضر فایل‌های CSS و JS در شاخهٔ ریشه قرار دارند (مثلاً `style.css`, `main.js`). این باعث می‌شود هنگام باز کردن مستقیم صفحات یا بارگذاری در میزبانی ایستا برخی منابع بارگذاری نشوند. در ادامه پیشنهادهایی برای اصلاح آمده است.
+Note: Several HTML files reference resource paths like `css/` and `js/` (for example `css/style.css` or `js/main.js`). At the moment, those folders may not exist in the repository root — adjust the file layout or the links accordingly (see suggestions).
 
-## آنچه دیدم و پیشنهادهای فوری
-- این مخزن یک وب‌سایت استاتیک با محتوای آمادهٔ «Afghanistan Field Intelligence» است؛ هیچ بستهٔ نود/پایپ‌لاین ساخت (مثل package.json یا build script) در ریشه پیدا نشد.
-- فایل‌های JS از عبارات `export` استفاده می‌کنند، بنابراین بهتر است فایل‌ها از طریق یک وب‌سرور (http) سرو شوند تا ماژول‌های ES به درستی لود شوند — باز کردن مستقیم `file://` ممکن است باعث ارور ماژول‌ها شود.
+## Observations and quick recommendations
+- This repository is a static website for the "Afghanistan Field Intelligence" content; there is no Node build pipeline or packaging (no package.json).
+- JavaScript files use `export` / ES module syntax, so pages must be served over HTTP rather than opened via the file:// protocol.
 
-پیشنهادهای اصلاح ساختار:
-1. ایجاد پوشه‌های `css/` و `js/` و انتقال `style.css`, `dashboard.css` به `css/` و `main.js`, `archive.js` (و هر اسکریپت دیگر) به `js/` تا مسیرهای داخل HTML با فایل‌ها مطابقت پیدا کنند.
-2. در صورت ترجیح نگه‌داشتن همهٔ فایل‌ها در ریشه، HTML را به‌روز کنید تا به جای `css/style.css` و `js/main.js` به `style.css` و `main.js` اشاره کند — اما ساختار پوشه‌ای پیشنهادی خواناتر و آسان‌تر برای میزبانی است.
-3. اگر می‌خواهید قابلیت توسعه محلی راحت‌تر شود، یک فایل سادهٔ `package.json` با اسکریپت `serve` یا یک فایل `Makefile` بسازید، یا فقط دستورالعمل راه‌اندازی با Python/Node را در README اضافه کنید.
+Recommended structural fixes:
+1. Create `css/` and `js/` directories and move `style.css`, `dashboard.css` into `css/` and `main.js`, `archive.js` (and any other scripts) into `js/` so paths like `css/style.css` and `js/main.js` work as expected.
+2. If you prefer keeping files at the repository root, update the HTML files to reference `style.css` and `main.js` instead of `css/style.css` and `js/main.js`.
+3. If you want easier local development, add a minimal `package.json` with a `serve` script or a small Makefile to run a static server.
 
-## چگونه به‌سرعت سایت را محلی اجرا کنید
-ساده‌ترین راه (نیاز به Python 3):
+## Run the site locally (quick)
+Simplest approach (requires Python 3):
+
 ```bash
-# در شاخهٔ ریشه مخزن
+# from the repository root
 python3 -m http.server 8000
-# سپس در مرورگر باز کنید:
+# then open in your browser:
 http://localhost:8000/index.html
 ```
 
-جایگزین Node (درصورتی‌که npx نصب شده باشد):
+Alternative with Node (if npx is available):
+
 ```bash
 npx serve . -l 8000
 ```
 
-نکته: از آنجا که اسکریپت‌ها ماژول ES (export/ import) دارند، حتماً صفحات را از طریق HTTP سرو کنید و با `file://` باز نکنید.
+Important: Because the scripts are ES modules (use `export` / `import`), serve the pages over HTTP — do not open them with `file://`.
 
-## نکات امنیتی و حقوقی
-- برخی محتواها در صفحات به «CONFIDENTIAL» یا «B2B subscribers only» اشاره می‌کنند؛ مطمئن شوید هنگام قرار دادن دادهٔ واقعی محرمانه از روش‌های مناسب اشتراک و ذخیره‌سازی استفاده می‌کنید.
-- در README فعلی مجوزی تعیین نشده است — اگر می‌خواهید من یک مجوز باز (مثلاً MIT) اضافه کنم، بگوئید تا فایل LICENSE را اضافه کنم.
+## Security and legal notes
+- Some page content references confidentiality (e.g., "CONFIDENTIAL" or "B2B subscribers only"). Ensure that any real or sensitive data is properly handled and that access controls are in place before publishing.
+- No license file is currently present. If you'd like, I can add an open-source license such as MIT — tell me which license you prefer and I can add a LICENSE file.
 
-## راهنمای مشارکت
-- برای هر تغییر کوچک یک Pull Request باز کنید و توضیح دهید چه تغییری انجام داده‌اید و چرا.
-- برای باگ‌ها یا درخواست ویژگی، یک Issue باز کنید و نمونه/اسکرین‌شات/لاگ اضافه کنید.
-- پیشنهاد ساختار: قبل از افزودن اسکریپت سرور یا بک‌اند جدید، یک issue با طرح کلی ایجاد کنید تا هماهنگ شویم.
+## Contributing
+- Open a Pull Request for small changes and describe what you changed and why.
+- For bugs or feature requests, open an Issue and include a screenshot / sample / log where helpful.
+- If you plan to add a server or backend, open an Issue first with an outline so maintainers can review the plan.
 
-## لیست کارهای پیشنهادی (در صورت تمایل من می‌توانم انجام دهم)
-- اصلاح مسیرهای منابع (ایجاد `css/` و `js/` یا به‌روزرسانی لینک‌های HTML) — پیشنهادی و کم‌ریسک.
-- اضافه کردن فایل LICENSE (مثلاً MIT).
-- افزودن یک صفحه CONTRIBUTING.md و ISSUE_TEMPLATE/PR_TEMPLATE.
-- افزودن یک اسکریپت سادهٔ توسعه (`package.json`) با دستور `start: serve .`.
+## Suggested tasks (I can help with any of these)
+- Fix resource paths (create `css/` and `js/` directories or update HTML links) — small, low-risk change.
+- Add a LICENSE file (e.g., MIT).
+- Add CONTRIBUTING.md and Issue/PR templates.
+- Add a minimal development script (`package.json`) with a `start` or `serve` command.
 
-## تماس
-برای بحث در مورد تغییرات یا درخواست‌های ویژه، از بخش Issues استفاده کنید یا مستقیماً به ایمیل موجود در contact.html مراجعه کنید.
+## Contact
+Use the repository Issues to discuss changes or feature requests, or contact via the email address included in `contact.html` if you prefer direct email.
 
 ---
 
-(این README به‌روزرسانی شد تا دقیقاً منعکس‌کنندهٔ ساختار فعلی مخزن و نکات عملیاتی باشد.)
+(This README was updated to accurately reflect the repository layout and practical operation notes.)
